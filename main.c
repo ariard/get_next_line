@@ -6,7 +6,7 @@
 /*   By: ariard <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/17 16:59:24 by ariard            #+#    #+#             */
-/*   Updated: 2016/11/18 15:03:54 by ariard           ###   ########.fr       */
+/*   Updated: 2016/11/18 15:47:56 by ariard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,15 @@ int		main(int argc, char **argv)
 	(void)argc;
 	a = "test";
 	line = &a;
+	printf("a est de : %s\n", a);
 	fd = open(argv[1], O_RDONLY);
 	get_next_line(fd, line);
-	printf("a est de : %s", a);
+	printf("a est de : %s\n", a);
 	get_next_line(fd, line);
-	printf("a est de : %s", a);
+	printf("a est de : %s\n", a);
 	get_next_line(fd, line);
-	printf("a est de : %s", a);
+	printf("a est de : %s\n", a);
 	get_next_line(fd, line);
-	printf("a est de : %s", a)
+	printf("a est de : %s\n", a);
 	return (0);
 }
