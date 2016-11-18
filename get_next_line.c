@@ -6,13 +6,13 @@
 /*   By: ariard <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/16 22:32:50 by ariard            #+#    #+#             */
-/*   Updated: 2016/11/17 22:01:41 by ariard           ###   ########.fr       */
+/*   Updated: 2016/11/18 14:29:18 by ariard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static int			ft_strlen_chr(char *s, char c)
+static int			ft_strlenchr(char *s, char c)
 {
 	int				i;
 	
@@ -27,24 +27,33 @@ int					get_next_line(const int fd, char **line)
 	static char		buf[BUF_SIZE];
 	char			*tmp;
 	char			*tmp2;
+	char			*tmp3;
 	int				ret;
+	int				len;
+	int				i;
 
 
 	ret = read(fd, buf, BUF_SIZE);
-	buf[ret] = '\0';
+	if (ret > 0)
+		buf[ret] = '\0';
 	tmp = buf;
 	(void)line;
-	if (!(tmp2 = (char *)malloc(sizeof(char) * ft_strlen_chr(tmp, 10))))
+	if (!(tmp2 = (char *)malloc(sizeof(char) * ft_strlenchr(tmp, 10))))
 		return (0);
-	while (*tmp != 10)
+	len = ft_strlen(buf);
+	i = 0;
+	if (!(tmp3 = (char *)malloc(sizeof(char) * ft_strlenchr(tmp, 10))))
+		return (0);
+	tmp3 = tmp2;
+	while (*tmp != 10 && i < len)
 	{
 		*tmp2 = *tmp;
 		tmp++;
+		i++;
 		tmp2++;
 	}
 	tmp++;
-	ft_putstr(tmp2);
-//	ft_putstr(tmp);	
+	ft_putstr(tmp3);
 	ft_memmove(buf, tmp, BUF_SIZE);
 	return (ret);
 }
