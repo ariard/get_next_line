@@ -6,7 +6,7 @@
 /*   By: ariard <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/16 22:33:07 by ariard            #+#    #+#             */
-/*   Updated: 2016/11/19 23:31:42 by ariard           ###   ########.fr       */
+/*   Updated: 2016/11/20 00:30:31 by ariard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 
-#define BUF_SIZE 1
+#define BUF_SIZE 10
 
 void	ft_putchar(char c);
 

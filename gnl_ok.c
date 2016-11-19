@@ -6,7 +6,7 @@
 /*   By: ariard <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/19 21:10:58 by ariard            #+#    #+#             */
-/*   Updated: 2016/11/20 00:30:41 by ariard           ###   ########.fr       */
+/*   Updated: 2016/11/20 00:03:58 by ariard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,43 +16,29 @@
 void		ft_set_line(char **line, char *s)
 {
 	char 	*new_tmp;
-	char	*keep;
-	char	*keep2;
 
-	keep = ft_memalloc(ft_strlen(s));
-	keep2 = ft_memalloc(ft_strlen(s));
+	(void)line;
 	new_tmp = ft_memalloc(ft_strlen(s));
-	keep = new_tmp;
-	keep2 = s;
+//	printf("dans set, tmp est de : %s", s);
 	while (*s != 10 && *s != '\0')
 	{
-		*new_tmp = *s;
-		new_tmp++;
+		printf("%c", *s);
 		s++;
 	}
-	s++;
-	*new_tmp = '\0';
-	*line = keep;
-	ft_memmove(keep2, s, ft_strlen(s));
-//	printf("%s", *line);
 }
 
 int			get_next_line(const int fd, char **line)
 {
-	int			ret;
-	char		buf[BUF_SIZE];
-	static char	*tmp;
-	char		*tmp2;
-	char		*tmp3;
+	int		ret;
+	char	buf[BUF_SIZE];
+	char	*tmp;
+	char	*tmp2;
+	char	*tmp3;
 
-	if (fd == -1)
-		return (-1);
-	if (!tmp)	
-	{
+	(void)line;
 	ft_bzero(buf, BUF_SIZE);
 	tmp = ft_memalloc(BUF_SIZE);
 	ft_bzero(tmp, BUF_SIZE);
-	}
 	while ((ret = read(fd, buf, BUF_SIZE)) != 0)
 	{
 		tmp2 = ft_memalloc(BUF_SIZE);
@@ -64,7 +50,7 @@ int			get_next_line(const int fd, char **line)
 		ft_strncat(tmp, buf, BUF_SIZE);	
 		ft_bzero(buf, BUF_SIZE);
 	}
-	printf("tmp est de : %s\n\n", tmp);
+	printf("a la fin tmp est de : %s\n\n", tmp);
 	ft_set_line(line, tmp);
 	return (0);
 }
