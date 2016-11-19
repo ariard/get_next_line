@@ -6,7 +6,7 @@
 /*   By: ariard <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/16 22:33:07 by ariard            #+#    #+#             */
-/*   Updated: 2016/11/19 21:55:07 by ariard           ###   ########.fr       */
+/*   Updated: 2016/11/19 23:31:42 by ariard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,19 @@
 #include <unistd.h>
 #include <stdlib.h>
 
-#define BUF_SIZE 10
+#define BUF_SIZE 1
 
 void	ft_putchar(char c);
 
 void	ft_putstr(char *s);
+
+void	*ft_memalloc(size_t size);
+
+void	ft_bzero(void *s, size_t n);
+
+void	*ft_memset(void *b, int c, size_t len);
+
+char	*ft_strncat(char *s1, char const *s2, size_t n);
 
 void	*ft_memmove(void *dest, const void *src, size_t size);
 
