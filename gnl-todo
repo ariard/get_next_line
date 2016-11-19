@@ -1,3 +1,12 @@
 1. gerer les erreurs en fonction de ligne lue ou erreur de copie
 2. comment capter fin du fichier
 3. gerer les multiples pointeurs
+4.gerer la lecture si le buf size varie
+6.gerer dev/random
+
+-gerer variation buffer
+	-variable static
+avancement au bon \n ou fin
+	copie dans line
+ft_memmove sur lui-meme
+bon_retour d erreur
