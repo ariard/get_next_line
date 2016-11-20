@@ -6,7 +6,7 @@
 /*   By: ariard <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/16 22:33:07 by ariard            #+#    #+#             */
-/*   Updated: 2016/11/20 17:48:19 by ariard           ###   ########.fr       */
+/*   Updated: 2016/11/20 18:43:09 by ariard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 
-#define BUF_SIZE 1
+#define BUF_SIZE 10
 
 void	*ft_memalloc(size_t size);
 

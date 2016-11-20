@@ -6,25 +6,21 @@
 /*   By: ariard <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/20 14:58:41 by ariard            #+#    #+#             */
-/*   Updated: 2016/11/20 17:48:13 by ariard           ###   ########.fr       */
+/*   Updated: 2016/11/20 18:43:04 by ariard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #include <stdio.h>
 
-
-static int			ft_set_line(char *string, char **line)
-{
-	char			*tmp;
-
-	tmp
-
-static int			ft_set_string(char *buf, int size, char **line)
+static int			ft_set_line(char *buf, int size, char **line)
 {
 	static char		*string;
 	char			*tmp;
+	char			*tmp2;
+	size_t			count;
 
+	(void)line;
 	if (!string)
 	{
 		string = ft_memalloc(size);
@@ -36,15 +32,23 @@ static int			ft_set_string(char *buf, int size, char **line)
 	ft_memcpy(string, tmp, ft_strlen(tmp));
 	ft_strdel(&tmp);
 	ft_strncat(string, buf, size);
-	while (size--)
+	printf("string : %s\n", string);
+	count = 0;
+	while (*string)
 	{
-		if (*buf == 10 || *buf == 0)
+		if (*string == 10 || *string == 0)
 		{
-			*line = string;
-			ft_strdel(&string);
+			printf("string : %s\n", string);
+			tmp2 = ft_memalloc(ft_strlen(string));
+			ft_bzero(tmp2, ft_strlen(string));
+			ft_memcpy(tmp2, string, count);
+			string++;
+//			printf("tmp2 est de : %s", tmp2);
+			*line = tmp2;	
 			return (1);
 		}
-		buf++;
+		string++;
+		count++;
 	}
 	return (0);
 }
