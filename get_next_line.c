@@ -1,69 +1,74 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ariard <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/16 22:32:50 by ariard            #+#    #+#             */
-/*   Updated: 2016/11/20 12:18:45 by ariard           ###   ########.fr       */
+/*   Created: 2016/11/19 21:10:58 by ariard            #+#    #+#             */
+/*   Updated: 2016/11/20 17:38:36 by ariard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include <stdio.h>
 
-static int			ft_strlenchr(char *s, char c)
+char		*ft_set_line(char **line, char *s)
 {
-	int				i;
-	
-	i = 0;
-	while (*s++ != c)
-		i++;
-	return (i);
-}
+	char 	*new_tmp;
+	char	*keep;
 
-int					get_next_line(const int fd, char **line)
-{
-	static char		buf[BUF_SIZE];
-	char			*tmp;
-	char			*tmp2;
-	char			*tmp3;
-	int				ret;
-	int				len;
-	int				i;
-
-	ret = read(fd, buf, BUF_SIZE);
-	if (ret > 0)
-		buf[ret] = '\0';
-	tmp = buf;
-	if (!(tmp2 = (char *)malloc(sizeof(char) * ft_strlenchr(tmp, 10))))
-		return (0);
-	len = ft_strlen(buf);
-	i = 0;
-	if (!(tmp3 = (char *)malloc(sizeof(char) * ft_strlenchr(tmp, 10))))
-		return (0);
-	tmp3 = tmp2;
-	while (*tmp != 10 && i < len)
+	keep = ft_memalloc(ft_strlen(s));
+	new_tmp = ft_memalloc(ft_strlen(s));
+	keep = new_tmp;
+	while (*s != 10 && *s != '\0')
 	{
-		*tmp2 = *tmp;
-		tmp++;
-		i++;
-		tmp2++;
+		*new_tmp = *s;
+		new_tmp++;
+		s++;
 	}
-	*tmp2 = '\0';
-	tmp++;	
-	*line = tmp3;
-	ft_memmove(buf, tmp, BUF_SIZE);
-	return (ret);
+	s++;
+	*new_tmp = '\0';
+	*line = keep;
+	free(keep);
+	return (s);
+//	printf("%s", *line);
 }
 
-//UTILISER UN AUTRE POINTEUR, Y COPIER TMP ET LE COPIER DANS LINE
-//copier buf dans line
-// -calculer longeur a mallocer -verifier la copie 1 par 1
-//retenir buffer
-//gerer erreur
-//sauter '\n'
-//verifier les entrees
-//leaks memoires
-//gerer les comportements indifferents
-//comment detecter fin du fichier
+int			get_next_line(const int fd, char **line)
+{
+	int			ret;
+	char		buf[BUF_SIZE];
+	size_t 		len;
+	static char	*tmp;
+	char		*tmp3;
+
+	if (fd == -1)
+		return (-1);
+	if (!tmp)	
+	{
+	ft_bzero(buf, BUF_SIZE);
+	tmp = ft_memalloc(BUF_SIZE);
+	ft_bzero(tmp, BUF_SIZE);
+	}
+	while ((ret = read(fd, buf, BUF_SIZE)) != 0)
+	{
+		if (ret == -1)
+			return (-1);
+		else if (ret == 0)
+			return (0);
+		len = ft_strlen(tmp);
+		tmp3 = ft_memalloc(len);
+		ft_memmove(tmp3, tmp, len);
+//		printf("tmp est de : %s\n", tmp);	
+		tmp = ft_memalloc(len + BUF_SIZE);
+//		printf("now tmp est de : %s\n", tmp);
+		ft_memmove(tmp, tmp3, ft_strlen(tmp3));	
+		free(tmp3);
+		ft_strncat(tmp, buf, BUF_SIZE);
+		ft_bzero(buf, BUF_SIZE);
+	}
+//	printf("tmp est de : %s\n\n", tmp);
+	tmp = ft_set_line(line, tmp);
+	return (1);
+}
