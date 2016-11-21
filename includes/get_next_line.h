@@ -6,7 +6,7 @@
 /*   By: ariard <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/16 22:33:07 by ariard            #+#    #+#             */
-/*   Updated: 2016/11/21 22:10:00 by ariard           ###   ########.fr       */
+/*   Updated: 2016/11/21 22:42:45 by ariard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,17 @@
 
 # define BUFF_SIZE 10
 
+typedef struct		s_gnl
+{
+	int				ret;
+	int				check;
+	size_t			len;
+	char			*buf;
+}					t_gnl;
+
 void	*ft_memalloc(size_t size);
+
+void	ft_memdel(void *ap);
 
 char	*ft_strncat(char *s1, const char *s2, size_t n);
 
