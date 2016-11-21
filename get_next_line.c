@@ -6,7 +6,7 @@
 /*   By: ariard <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/21 14:17:15 by ariard            #+#    #+#             */
-/*   Updated: 2016/11/21 22:52:37 by ariard           ###   ########.fr       */
+/*   Updated: 2016/11/21 23:20:35 by ariard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static char			*ft_set_string(char *buf, char *string, int size)
 		string = ft_memalloc(size);
 //	printf("buf : %s\n", buf);
 	ft_strncat(string, buf, size);
-	ft_memdel(&buf);	
+	free(buf);
 	return (string);
 }
 
@@ -43,7 +43,7 @@ static size_t		ft_set_line(char *string, char **line)
 		string++;
 	*string = '\0';
 	*line = tmp;
-	printf("line : %s\n", *line);
+//	printf("line : %s\n", *line);
 	return (ft_strlen(tmp) + 1);
 }
 

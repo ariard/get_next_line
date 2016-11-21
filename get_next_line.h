@@ -6,7 +6,7 @@
 /*   By: ariard <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/16 22:33:07 by ariard            #+#    #+#             */
-/*   Updated: 2016/11/21 23:09:43 by ariard           ###   ########.fr       */
+/*   Updated: 2016/11/21 23:29:20 by ariard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,8 @@
 # include <fcntl.h>
 # include <unistd.h>
 # include <stdlib.h>
-# include <string.h>
 
-# define BUFF_SIZE 10000
+# define BUFF_SIZE 1
 
 typedef struct		s_gnl
 {
@@ -31,8 +30,6 @@ typedef struct		s_gnl
 }					t_gnl;
 
 void	*ft_memalloc(size_t size);
-
-void	ft_memdel(void *ap);
 
 char	*ft_strncat(char *s1, const char *s2, size_t n);
 
