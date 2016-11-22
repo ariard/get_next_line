@@ -6,23 +6,12 @@
 /*   By: ariard <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/21 14:17:15 by ariard            #+#    #+#             */
-/*   Updated: 2016/11/21 23:20:35 by ariard           ###   ########.fr       */
+/*   Updated: 2016/11/22 14:33:48 by ariard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "get_next_line.h"
-
-static int			ft_check_buf(char *buf)
-{
-	while (*buf)
-	{
-		if (*buf == 10)
-			return (1);
-		buf++;
-	}
-	return (0);
-}
 
 static char			*ft_set_string(char *buf, char *string, int size)
 {
@@ -47,6 +36,8 @@ static size_t		ft_set_line(char *string, char **line)
 	return (ft_strlen(tmp) + 1);
 }
 
+//static	t_list		ft_switch_fd(const int fd, char **line)
+
 int					get_next_line(const int fd, char **line)
 {
 	static char		*string;
@@ -54,14 +45,14 @@ int					get_next_line(const int fd, char **line)
 
 	if (fd < 0 || line == NULL || BUFF_SIZE <= 0)
 		return (-1);
-	gnl.check = 0;
+	gnl.check = NULL;
 	gnl.ret = 1;
-	while (gnl.check == 0 && gnl.ret > 0)
+	while (gnl.check == NULL && gnl.ret > 0)
 	{
 		gnl.buf = ft_memalloc(BUFF_SIZE);
 		gnl.ret = read(fd, gnl.buf, BUFF_SIZE);
 		string = ft_set_string(gnl.buf, string, BUFF_SIZE);
-		gnl.check = ft_check_buf(gnl.buf);
+		gnl.check = ft_strchr(gnl.buf, 10);
 	}
 	if (*string)
 	{
