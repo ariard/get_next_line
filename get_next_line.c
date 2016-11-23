@@ -6,7 +6,7 @@
 /*   By: ariard <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/21 14:17:15 by ariard            #+#    #+#             */
-/*   Updated: 2016/11/23 17:49:17 by ariard           ###   ########.fr       */
+/*   Updated: 2016/11/23 18:08:08 by ariard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,6 @@ int					get_next_line(const int fd, char **line)
 	t_gnl			gnl;
 
 	if (fd < 0 || line == NULL || BUFF_SIZE <= 0)
-		return (-1);
-	if ((gnl.ret = read(fd, gnl.buf, 0)) == -1)
 		return (-1);
 	gnl.check = NULL;
 	gnl.ret = 1;
