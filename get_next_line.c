@@ -6,18 +6,16 @@
 /*   By: ariard <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/21 14:17:15 by ariard            #+#    #+#             */
-/*   Updated: 2016/11/22 14:33:48 by ariard           ###   ########.fr       */
+/*   Updated: 2016/11/23 17:49:17 by ariard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "get_next_line.h"
 
 static char			*ft_set_string(char *buf, char *string, int size)
 {
 	if (!string)
 		string = ft_memalloc(size);
-//	printf("buf : %s\n", buf);
 	ft_strncat(string, buf, size);
 	free(buf);
 	return (string);
@@ -30,20 +28,19 @@ static size_t		ft_set_line(char *string, char **line)
 	tmp = string;
 	while (*string != 10 && *string != 0)
 		string++;
-	*string = '\0';
+	*string = '\0';	
 	*line = tmp;
-//	printf("line : %s\n", *line);
 	return (ft_strlen(tmp) + 1);
 }
-
-//static	t_list		ft_switch_fd(const int fd, char **line)
 
 int					get_next_line(const int fd, char **line)
 {
 	static char		*string;
-	t_gnl			gnl;	
+	t_gnl			gnl;
 
 	if (fd < 0 || line == NULL || BUFF_SIZE <= 0)
+		return (-1);
+	if ((gnl.ret = read(fd, gnl.buf, 0)) == -1)
 		return (-1);
 	gnl.check = NULL;
 	gnl.ret = 1;
