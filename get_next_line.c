@@ -6,10 +6,11 @@
 /*   By: ariard <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/21 14:17:15 by ariard            #+#    #+#             */
-/*   Updated: 2016/11/23 18:08:08 by ariard           ###   ########.fr       */
+/*   Updated: 2016/11/24 12:49:17 by ariard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include "get_next_line.h"
 
 static char			*ft_set_string(char *buf, char *string, int size)
@@ -26,6 +27,11 @@ static size_t		ft_set_line(char *string, char **line)
 	char			*tmp;
 
 	tmp = string;
+	if (*string == 10 && *(string - 1) == 0)
+	{
+		*string = '\0';
+		return (1);
+	}
 	while (*string != 10 && *string != 0)
 		string++;
 	*string = '\0';	
@@ -48,7 +54,7 @@ int					get_next_line(const int fd, char **line)
 		gnl.ret = read(fd, gnl.buf, BUFF_SIZE);
 		string = ft_set_string(gnl.buf, string, BUFF_SIZE);
 		gnl.check = ft_strchr(gnl.buf, 10);
-	}
+	}	
 	if (*string)
 	{
 		gnl.len = ft_set_line(string, line);
