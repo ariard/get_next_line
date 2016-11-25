@@ -6,7 +6,7 @@
 /*   By: ariard <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/21 14:17:15 by ariard            #+#    #+#             */
-/*   Updated: 2016/11/25 20:49:19 by ariard           ###   ########.fr       */
+/*   Updated: 2016/11/25 21:06:00 by ariard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ static size_t		ft_set_line(char *string, char **line)
 	}
 	while (*string != 10 && *string != 0)
 		string++;
-	*string = '\0';
-	*line = tmp;
+	*string = '\0';	
+	*line = ft_strdup(tmp);
 	return (ft_strlen(tmp) + 1);
 }
 
@@ -66,7 +66,7 @@ int					get_next_line(const int fd, char **line)
 	}
 	if (*string)  
 	{
-		*line = NULL;
+		*line = ft_memalloc(sizeof(char));
 		gnl.len = ft_set_line(string, line);
 		while (gnl.len--)
 			string++;
