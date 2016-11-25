@@ -8,15 +8,14 @@ int		main(int argc, char **argv)
 	int		ret;
 	int		fd;
 
-	a = "aaa";
-	line = &a;
 	(void)argc;
+	(void)argv;	
+	a = "";
+	line = &a;
+
 	fd = open(argv[1], O_RDONLY);
-	while ((ret = get_next_line(fd, line)) > 0)
-	{
-//		printf("ret : %d\n", ret);
-		printf("%s\n", *line);
-	}
-//	printf("ret : %d\n", ret);
-	return (0);
+	ret = get_next_line(42, line);
+	printf("%d", ret);
+
+	
 }

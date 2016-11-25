@@ -6,7 +6,7 @@
 /*   By: ariard <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/21 14:17:15 by ariard            #+#    #+#             */
-/*   Updated: 2016/11/25 19:52:12 by ariard           ###   ########.fr       */
+/*   Updated: 2016/11/25 19:34:46 by ariard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static char			*ft_set_string(char *buf, char *string)
 
 	tmp = string;
 	string = ft_strjoin(string, buf);
-//	free(tmp);
+//	ft_strdel(&tmp);
 	return (string);
 }
 
