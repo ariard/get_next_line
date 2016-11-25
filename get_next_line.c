@@ -6,7 +6,7 @@
 /*   By: ariard <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/21 14:17:15 by ariard            #+#    #+#             */
-/*   Updated: 2016/11/25 19:52:12 by ariard           ###   ########.fr       */
+/*   Updated: 2016/11/25 20:49:19 by ariard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ static char			*ft_set_string(char *buf, char *string)
 	tmp = string;
 	string = ft_strjoin(string, buf);
 //	free(tmp);
+//	tmp = NULL;
 	return (string);
 }
 
@@ -63,8 +64,9 @@ int					get_next_line(const int fd, char **line)
 		gnl.check = ft_strchr(gnl.buf, 10);
 		ft_strdel(&gnl.buf);
 	}
-	if (*string) 
+	if (*string)  
 	{
+		*line = NULL;
 		gnl.len = ft_set_line(string, line);
 		while (gnl.len--)
 			string++;
