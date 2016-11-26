@@ -6,7 +6,7 @@
 /*   By: ariard <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/21 14:17:15 by ariard            #+#    #+#             */
-/*   Updated: 2016/11/26 16:05:47 by ariard           ###   ########.fr       */
+/*   Updated: 2016/11/26 18:43:27 by ariard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static char			*ft_set_string(char *buf, char *string)
 	char			*tmp;
 
 	tmp = string;
-	string = ft_strjoin(string, buf);
+	string  = ft_strjoin(tmp, buf);
 	ft_strdel(&tmp);
 	return (string);
 }
@@ -28,11 +28,6 @@ static size_t		ft_set_line(char *string, char **line)
 	char			*tmp;
 
 	tmp = string;
-//	if (*string == 10 && *(string - 1) == 0)
-//	{
-//		*string = '\0';
-//		return (1);
-//	}
 	while (*string != 10 && *string != 0)
 		string++;
 	*string = '\0';		
@@ -68,9 +63,9 @@ int					get_next_line(const int fd, char **line)
 		*line = ft_memalloc(sizeof(char));
 		tmp2 = *line;		
 		gnl.len = ft_set_line(string, line);
-		while (gnl.len--)
+		while (gnl.len-- && *string)
 			string++;
-		tmp = stock;	
+		tmp = stock;
 		stock = ft_strdup(string);
 		ft_strdel(&tmp);
 		ft_strdel(&tmp2);

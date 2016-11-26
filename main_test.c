@@ -14,8 +14,8 @@ int		main(int argc, char **argv)
 	fd = open(argv[1], O_RDONLY);
 	while ((ret = get_next_line(fd, line)) > 0)
 	{
-//		printf("ret : %d\n", ret);
-		printf("%s\n", *line);
+		printf("ret : %d\n", ret);
+		printf("%s", *line);
 	}
 //	printf("ret : %d\n", ret);
 	return (0);

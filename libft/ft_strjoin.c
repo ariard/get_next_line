@@ -15,30 +15,13 @@
 char	*ft_strjoin(char *s1, char *s2)
 {
 	char	*new;
-	char	*tmp;
-
 
 	if (!s1 || !s2)
 		return (NULL);
-	new = 0;
-	new = (char *)malloc(sizeof(char) * (ft_strlen(s1) +
-				ft_strlen(s2)) + 1);
+	new = ft_strnew(ft_strlen(s1) + ft_strlen(s2));
 	if (!new)
 		return (NULL);
-	tmp = new;
-
-	while (*s1)
-	{
-		*new = *s1;
-		new++;
-		s1++;
-	}
-	while (*s2)
-	{
-		*new = *s2;
-		new++;
-		s2++;
-	}
-	*new = '\0';
-	return (tmp);
+	ft_strcpy(new, s1);
+	ft_strcat(new, s2);
+	return (new);
 }

@@ -6,12 +6,13 @@
 #    By: ariard <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/04 17:38:48 by ariard            #+#    #+#              #
-#    Updated: 2016/11/26 00:18:21 by ariard           ###   ########.fr        #
+#    Updated: 2016/11/26 18:30:19 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC= gcc
-CFLAGS= -Wall -Wextra -Werror
+CFLAGS= -Wall -Wextra -Werror -g
+#-fsanitize=address
 LC= ar rc
 IC= ranlib
 NAME= ./libft.a
