@@ -6,7 +6,7 @@
 /*   By: ariard <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/21 14:17:15 by ariard            #+#    #+#             */
-/*   Updated: 2016/11/26 18:43:27 by ariard           ###   ########.fr       */
+/*   Updated: 2016/11/26 18:51:34 by ariard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static char			*ft_set_string(char *buf, char *string)
 	return (string);
 }
 
-static size_t		ft_set_line(char *string, char **line)
+/*static size_t		ft_set_line(char *string, char **line)
 {
 	char			*tmp;
 
@@ -33,14 +33,16 @@ static size_t		ft_set_line(char *string, char **line)
 	*string = '\0';		
 	*line = tmp;
 	return (ft_strlen(tmp) + 1);
-}
+}*/
 
 int					get_next_line(const int fd, char **line)
 {
 	static char		*stock;
 	char			*tmp2;
 	char			*tmp;
+	char			*tmp3;
 	char			*string;
+	int				last;
 	t_gnl			gnl;
 
 	if (fd < 0 || line == NULL || BUFF_SIZE <= 0)
@@ -61,13 +63,24 @@ int					get_next_line(const int fd, char **line)
 	if (*string)  
 	{
 		*line = ft_memalloc(sizeof(char));
-		tmp2 = *line;		
-		gnl.len = ft_set_line(string, line);
-		while (gnl.len-- && *string)
+		tmp2 = *line;	
+		tmp3 = string;	
+		while (*string != 10  && *string)
 			string++;
-		tmp = stock;
-		stock = ft_strdup(string);
-		ft_strdel(&tmp);
+		last = 0;
+		if (*string == 0)
+			last++;
+		*string = '\0';
+		*line = tmp3;
+		string++;
+		if (*string && last == 0)
+		{
+			tmp = stock;
+			stock = ft_strdup(string);
+			ft_strdel(&tmp);
+		}
+		else
+			ft_strdel(&stock);
 		ft_strdel(&tmp2);
 		return (1);
 	}
