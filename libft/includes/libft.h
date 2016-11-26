@@ -6,7 +6,7 @@
 /*   By: ariard <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/03 19:52:29 by ariard            #+#    #+#             */
-/*   Updated: 2016/11/12 16:43:20 by ariard           ###   ########.fr       */
+/*   Updated: 2016/11/26 01:03:53 by ariard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,7 @@ char				*ft_strrchr(const char *s, int c);
 
 char				*ft_strstr(const char *big, const char *little);
 
-char				*ft_strnstr(const char *big,
-		const char *little, size_t len);
+char				*ft_strnstr(const char *big, const char *little, size_t len);
 
 int					ft_strcmp(const char *s1, const char *s2);
 
@@ -105,7 +104,7 @@ int					ft_strnequ(char const *s1, char const *s2, size_t n);
 
 char				*ft_strsub(char const *s, unsigned int start, size_t len);
 
-char				*ft_strjoin(char const *s1, char const *s2);
+char				*ft_strjoin(char *s1, char *s2);
 
 char				*ft_strtrim(char const *s);
 

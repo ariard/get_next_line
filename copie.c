@@ -6,17 +6,16 @@
 /*   By: ariard <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/06 12:20:16 by ariard            #+#    #+#             */
-/*   Updated: 2016/11/26 01:21:10 by ariard           ###   ########.fr       */
+/*   Updated: 2016/11/25 18:53:54 by ariard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/libft.h"
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*new;
 	char	*tmp;
-
 
 	if (!s1 || !s2)
 		return (NULL);
@@ -26,7 +25,6 @@ char	*ft_strjoin(char *s1, char *s2)
 	if (!new)
 		return (NULL);
 	tmp = new;
-
 	while (*s1)
 	{
 		*new = *s1;

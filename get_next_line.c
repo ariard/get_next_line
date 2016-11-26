@@ -6,7 +6,7 @@
 /*   By: ariard <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/21 14:17:15 by ariard            #+#    #+#             */
-/*   Updated: 2016/11/25 21:06:00 by ariard           ###   ########.fr       */
+/*   Updated: 2016/11/26 01:58:40 by ariard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@ static char			*ft_set_string(char *buf, char *string)
 
 	tmp = string;
 	string = ft_strjoin(string, buf);
-//	free(tmp);
-//	tmp = NULL;
+	ft_strdel(&tmp);
 	return (string);
 }
 
@@ -36,15 +35,18 @@ static size_t		ft_set_line(char *string, char **line)
 	}
 	while (*string != 10 && *string != 0)
 		string++;
-	*string = '\0';	
-	*line = ft_strdup(tmp);
+	*string = '\0';		
+	*line = tmp;
 	return (ft_strlen(tmp) + 1);
 }
 
 int					get_next_line(const int fd, char **line)
 {
 	static char		*stock;
+	char			*tmp2;
 	char			*tmp;
+	char			*tmp3;
+	char			*tmp4;
 	char			*string;
 	t_gnl			gnl;
 
@@ -54,25 +56,28 @@ int					get_next_line(const int fd, char **line)
 	gnl.ret = 1;
 	if (!stock)
 		stock = ft_strnew(0);
-	string = ft_strdup(stock);	
+	tmp = ft_strdup(stock);
 	while (gnl.check == NULL && gnl.ret > 0)
 	{
-		gnl.buf = ft_memalloc(BUFF_SIZE + 1);
+		string = ft_strdup(tmp);
+		ft_memset(gnl.buf, 0, BUFF_SIZE + 1);
 		gnl.ret = read(fd, gnl.buf, BUFF_SIZE);
-		gnl.buf[BUFF_SIZE] = '\0';	
-		string = ft_set_string(gnl.buf, string);
+		gnl.buf[BUFF_SIZE] = '\0';
+		tmp = ft_set_string(gnl.buf, string);	
 		gnl.check = ft_strchr(gnl.buf, 10);
-		ft_strdel(&gnl.buf);
 	}
-	if (*string)  
+	if (*tmp)  
 	{
 		*line = ft_memalloc(sizeof(char));
-		gnl.len = ft_set_line(string, line);
+		tmp2 = *line;	
+		tmp4 = tmp;
+		gnl.len = ft_set_line(tmp, line);
 		while (gnl.len--)
-			string++;
-		tmp = stock;
-		stock = ft_strdup(string);
-		ft_strdel(&tmp);
+			tmp++;
+		tmp3 = stock;
+		ft_strdel(&tmp3);
+		stock = ft_strdup(tmp);
+		ft_strdel(&tmp2);
 		return (1);
 	}
 	return (gnl.ret);
