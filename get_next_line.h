@@ -6,7 +6,7 @@
 /*   By: ariard <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/16 22:33:07 by ariard            #+#    #+#             */
-/*   Updated: 2016/11/27 12:36:35 by ariard           ###   ########.fr       */
+/*   Updated: 2016/11/27 12:37:21 by ariard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <stdlib.h>
 # include "libft/includes/libft.h"
 
-# define BUFF_SIZE 1
+# define BUFF_SIZE 16
 
 typedef struct		s_gnl
 {
